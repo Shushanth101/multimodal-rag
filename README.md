@@ -43,7 +43,7 @@ An agentic, multi-modal Retrieval-Augmented Generation (RAG) system built with *
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Shushanth101/multimodal-rag.git
 cd multimodal-rag
 ```
 
@@ -93,3 +93,17 @@ http://127.0.0.1:8000
 3. **Select a Model**: Choose either `Gemini 2.5 Flash` or `Qwen 3.6 27B (Groq)` in the Model Selection dropdown.
 4. **Chat**: Enter your prompt in the chat input (e.g. *"Show me the diagram representing the architecture"* or *"Explain scaled dot product attention"*). Watch the token generation stream live, and click inline images to zoom.
 5. **Reset database**: Click **Clear All** next to "Ingested Files" to delete all vector embeddings and uploaded files.
+
+---
+
+## Demos 
+
+<p align="center">
+  <img src="assets/Screenshot 2026-07-14 114734.png" width="700" alt="UI Demo Dashboard" />
+</p>
+
+<p align="center">
+  <img src="assets/Screenshot 2026-07-14 114727.png" width="700" alt="UI Demo Dashboard" />
+</p>
+
+
