@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimodal RAG Agent Client</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/frontend/index.css">
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <span class="status-dot"></span>
+        <h2>Multimodal RAG</h2>
+      </div>
+
+      <!-- Model Selection Section -->
+      <section class="sidebar-section">
+        <h3>Model Selection</h3>
+        <div class="control-group">
+          <select id="model-select">
+            <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+            <option value="qwen/qwen3.6-27b">Qwen 3.6 27B (Groq)</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Document Ingestion Section -->
+      <section class="sidebar-section">
+        <h3>Ingest Documents</h3>
+        <div id="upload-zone">
+          <svg viewBox="0 0 24 24" class="upload-icon"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+          <p>Drag & Drop PDFs here or <span class="highlight">Browse</span></p>
+          <input type="file" id="file-input" multiple accept=".pdf" class="hidden" />
+        </div>
+        <div id="upload-status" class="hidden">
+          <div class="spinner"></div>
+          <span id="upload-status-text">Ingesting PDFs...</span>
+        </div>
+      </section>
+
+      <!-- Ingested Files List -->
+      <section class="sidebar-section flex-grow">
+        <div class="section-header">
+          <h3>Ingested Files</h3>
+          <button id="clear-all-btn" class="text-btn">Clear All</button>
+        </div>
+        <div id="files-list" class="empty-list-placeholder">
+          No documents ingested yet. Upload a PDF to start asking questions.
+        </div>
+      </section>
+
+      <div class="sidebar-footer">
+        <small>Powered by FastAPI, ChromaDB & LangGraph</small>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <main id="chat-workspace">
+      <header id="chat-header">
+        <div class="header-info">
+          <h1 id="active-thread-title">Conversational Research Partner</h1>
+          <p id="active-model-display">Selected Model: gemini-2.5-flash</p>
+        </div>
+        <button id="new-chat-btn" class="outline-btn">New Chat Thread</button>
+      </header>
+
+      <!-- Chat messages container -->
+      <div id="chat-window">
+        <div class="message ai-message">
+          <div class="avatar">✦</div>
+          <div class="message-content">
+            <p>Welcome! Once you ingest your PDF documents using the sidebar, ask me any questions about their contents. I will retrieve relevant text passages and diagrams to formulate my answers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat input area -->
+      <div id="input-area-container">
+        <div id="chat-input-area">
+          <textarea id="chat-input" placeholder="Ask a question about your ingested documents..." rows="1"></textarea>
+          <button id="send-btn" disabled>
+            <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- CDN Markdown Parser: marked -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Frontend Javascript logic -->
+  <script src="/frontend/index.js"></script>
+</body>
+</html>
